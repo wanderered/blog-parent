@@ -3,11 +3,14 @@ package com.yunyi.blog.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.yunyi.blog.dao.mapper.CommentMapper;
 import com.yunyi.blog.dao.pojo.Comment;
+import com.yunyi.blog.dao.pojo.SysUser;
 import com.yunyi.blog.service.CommentsService;
 import com.yunyi.blog.service.SysUserService;
+import com.yunyi.blog.utils.UserThreadLocal;
 import com.yunyi.blog.vo.CommentVo;
 import com.yunyi.blog.vo.Result;
 import com.yunyi.blog.vo.UserVo;
+import com.yunyi.blog.vo.params.CommentParam;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +41,26 @@ public class CommentsServiceImpl implements CommentsService {
         return Result.success(commentVoList);
     }
 
+    @Override
+    public Result comment(CommentParam commentParam) {
+        SysUser sysUser = UserThreadLocal.get();
+        Comment comment = new Comment();
+        comment.setArticleId(commentParam.getArticleId());
+        comment.setAuthorId(sysUser.getId());
+        comment.setContent(commentParam.getContent());
+        comment.setCreateDate(System.currentTimeMillis());
+        Long parent = commentParam.getParent();
+        if (parent == null || parent == 0) {
+            comment.setLevel(1);
+        }else{
+            comment.setLevel(2);
+        }
+        comment.setParentId(parent == null ? 0 : parent);
+        Long toUserId = commentParam.getToUserId();
+        comment.setToUid(toUserId == null ? 0 : toUserId);
+        this.commentMapper.insert(comment);
+        return Result.success(null);
+    }
 
 
     private List<CommentVo> copyList(List<Comment> comments) {

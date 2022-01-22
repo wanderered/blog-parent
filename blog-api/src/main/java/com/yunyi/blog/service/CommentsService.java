@@ -1,6 +1,7 @@
 package com.yunyi.blog.service;
 
 import com.yunyi.blog.vo.Result;
+import com.yunyi.blog.vo.params.CommentParam;
 
 public interface CommentsService {
     /**
@@ -11,4 +12,5 @@ public interface CommentsService {
     Result commentsByArticleId(Long id);
 
 
+    Result comment(CommentParam commentParam);
 }
