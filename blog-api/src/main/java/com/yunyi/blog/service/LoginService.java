@@ -13,14 +13,18 @@ public interface LoginService {
      */
     Result login(LoginParam loginParam);
 
-//    SysUser checkToken(String token);
+
+
+    SysUser checkToken(String token);
+
+
 //
-//    /**
-//     * logout
-//     * @param token
-//     * @return
-//     */
-//    Result logout(String token);
+    /**
+     * logout
+     * @param token
+     * @return
+     */
+    Result logout(String token);
 //
 //    /**
 //     * register

@@ -60,27 +60,27 @@ public class SysUserServiceImpl implements SysUserService {
         return sysUserMapper.selectOne(queryWrapper);
     }
 
-//    @Override
-//    public Result findUserByToken(String token) {
-//        /**
-//         * 1. token validation
-//         *      if null, 解析是否成功 redis是否存在
-//         * 2. 如果失败 返回错误
-//         * 3. 如果车工 返回对应的结果 LoginUserVo
-//         */
-//
-//        SysUser sysUser = loginService.checkToken(token);
-//        if(sysUser == null){
-//            Result.fail(ErrorCode.TOKEN_ERROR.getCode(), ErrorCode.TOKEN_ERROR.getMsg());
-//        }
-//
-//        LoginUserVo loginUserVo = new LoginUserVo();
-//        loginUserVo.setId(sysUser.getId());
-//        loginUserVo.setNickname(sysUser.getNickname());
-//        loginUserVo.setAvatar(sysUser.getAvatar());
-//        loginUserVo.setAccount(sysUser.getAccount());
-//        return Result.success(loginUserVo);
-//    }
+    @Override
+    public Result findUserByToken(String token) {
+        /**
+         * 1. token validation
+         *      if null, 解析是否成功 redis是否存在
+         * 2. 如果失败 返回错误
+         * 3. 如果车工 返回对应的结果 LoginUserVo
+         */
+
+        SysUser sysUser = loginService.checkToken(token);
+        if(sysUser == null){
+            Result.fail(ErrorCode.TOKEN_ERROR.getCode(), ErrorCode.TOKEN_ERROR.getMsg());
+        }
+
+        LoginUserVo loginUserVo = new LoginUserVo();
+        loginUserVo.setId(sysUser.getId());
+        loginUserVo.setNickname(sysUser.getNickname());
+        loginUserVo.setAvatar(sysUser.getAvatar());
+        loginUserVo.setAccount(sysUser.getAccount());
+        return Result.success(loginUserVo);
+    }
 
 //    @Override
 //    public SysUser findUserByAccount(String account) {

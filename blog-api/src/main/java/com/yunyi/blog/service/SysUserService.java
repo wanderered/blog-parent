@@ -14,13 +14,15 @@ public interface SysUserService {
 
 
     SysUser findUser(String account, String password);
-//
-//    /**
-//     * find user infor base on token
-//     * @param token
-//     * @return
-//     */
-//    Result findUserByToken(String token);
+
+
+
+    /**
+     * find user infor base on token
+     * @param token
+     * @return
+     */
+    Result findUserByToken(String token);
 //
 //    /**
 //     * 根据账户查找用户

@@ -53,28 +53,28 @@ public class LoginServiceImpl implements LoginService {
         return Result.success(token);
     }
 
-//    @Override
-//    public SysUser checkToken(String token) {
-//        if(StringUtils.isBlank(token)){
-//            return null;
-//        }
-//        Map<String, Object> stringObjectMap = JWTUtils.checkToken(token);
-//        if(stringObjectMap == null){
-//            return null;
-//        }
-//        String userJson = redisTemplate.opsForValue().get("TOKEN_" + token);
-//        if(StringUtils.isBlank(userJson)){
-//            return null;
-//        }
-//        SysUser sysUser = JSON.parseObject(userJson, SysUser.class);
-//        return sysUser;
-//    }
+    @Override
+    public SysUser checkToken(String token) {
+        if(StringUtils.isBlank(token)){
+            return null;
+        }
+        Map<String, Object> stringObjectMap = JWTUtils.checkToken(token);
+        if(stringObjectMap == null){
+            return null;
+        }
+        String userJson = redisTemplate.opsForValue().get("TOKEN_" + token);
+        if(StringUtils.isBlank(userJson)){
+            return null;
+        }
+        SysUser sysUser = JSON.parseObject(userJson, SysUser.class);
+        return sysUser;
+    }
 
-//    @Override
-//    public Result logout(String token) {
-//        redisTemplate.delete("TOKEN_" + token);
-//        return Result.success(null);
-//    }
+    @Override
+    public Result logout(String token) {
+        redisTemplate.delete("TOKEN_" + token);
+        return Result.success(null);
+    }
 
 //    @Override
 //    public Result register(LoginParam loginParam) {
