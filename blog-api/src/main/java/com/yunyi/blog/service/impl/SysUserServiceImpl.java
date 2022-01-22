@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.yunyi.blog.dao.mapper.SysUserMapper;
 import com.yunyi.blog.dao.pojo.SysUser;
 //import com.yunyi.blog.service.LoginService;
+import com.yunyi.blog.service.LoginService;
 import com.yunyi.blog.service.SysUserService;
 import com.yunyi.blog.vo.ErrorCode;
 import com.yunyi.blog.vo.LoginUserVo;
@@ -21,8 +22,8 @@ public class SysUserServiceImpl implements SysUserService {
     private SysUserMapper sysUserMapper;
     @Autowired
     private RedisTemplate<String,String> redisTemplate;
-//    @Autowired
-//    private LoginService loginService;
+    @Autowired
+    private LoginService loginService;
 
     @Override
     public UserVo findUserVoById(Long id) {
@@ -48,16 +49,16 @@ public class SysUserServiceImpl implements SysUserService {
         return sysUser;
     }
 
-//    @Override
-//    public SysUser findUser(String account, String password) {
-//        LambdaQueryWrapper<SysUser> queryWrapper = new LambdaQueryWrapper<>();
-//        queryWrapper.eq(SysUser::getAccount, account);
-//        queryWrapper.eq(SysUser::getPassword, password);
-//        queryWrapper.select(SysUser::getAccount, SysUser::getId, SysUser::getAvatar, SysUser::getNickname);
-//        queryWrapper.last("limit 1");
-//
-//        return sysUserMapper.selectOne(queryWrapper);
-//    }
+    @Override
+    public SysUser findUser(String account, String password) {
+        LambdaQueryWrapper<SysUser> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(SysUser::getAccount, account);
+        queryWrapper.eq(SysUser::getPassword, password);
+        queryWrapper.select(SysUser::getAccount, SysUser::getId, SysUser::getAvatar, SysUser::getNickname);
+        queryWrapper.last("limit 1");
+
+        return sysUserMapper.selectOne(queryWrapper);
+    }
 
 //    @Override
 //    public Result findUserByToken(String token) {
