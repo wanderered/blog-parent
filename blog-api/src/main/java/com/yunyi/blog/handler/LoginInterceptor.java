@@ -61,7 +61,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         //登陆验证成功，放行
         //我希望再controller中直接获取用户的信息怎么获取
-        //UserThreadLocal.put(sysUser);
+        UserThreadLocal.put(sysUser);
         return true;
     }
 
