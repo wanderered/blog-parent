@@ -1,6 +1,7 @@
 package com.yunyi.blog.service;
 
 import com.yunyi.blog.vo.Result;
+import com.yunyi.blog.vo.params.ArticleParam;
 import com.yunyi.blog.vo.params.PageParams;
 
 public interface ArticleService {
@@ -42,4 +43,11 @@ public interface ArticleService {
      * @return
      */
     Result findArticleById(Long articleId);
+
+    /**
+     * 文章发布服务
+     * @param articleParam
+     * @return
+     */
+    Result publish(ArticleParam articleParam);
 }

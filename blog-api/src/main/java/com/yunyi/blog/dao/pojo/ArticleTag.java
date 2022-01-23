@@ -3,10 +3,11 @@ package com.yunyi.blog.dao.pojo;
 import lombok.Data;
 
 @Data
-public class ArticleBody {
+public class ArticleTag {
 
     private Long id;
-    private String content;
-    private String contentHtml;
+
     private Long articleId;
+
+    private Long tagId;
 }

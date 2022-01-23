@@ -3,6 +3,7 @@ package com.yunyi.blog.controller;
 import com.yunyi.blog.service.ArticleService;
 
 import com.yunyi.blog.vo.Result;
+import com.yunyi.blog.vo.params.ArticleParam;
 import com.yunyi.blog.vo.params.PageParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -59,5 +60,10 @@ public class ArticleController {
     @PostMapping("view/{id}")
     public Result findArticleById(@PathVariable("id") Long articleId){
         return articleService.findArticleById(articleId);
+    }
+
+    @PostMapping("publish")
+    public Result publish(@RequestBody ArticleParam articleParam){
+        return articleService.publish(articleParam);
     }
 }

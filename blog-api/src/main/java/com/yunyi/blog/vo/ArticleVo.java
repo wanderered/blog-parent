@@ -8,6 +8,7 @@ import java.util.List;
 
 @Data
 public class ArticleVo {
+    //一定要记得加 要不然 会出现精度损失
     @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
