@@ -1,5 +1,6 @@
 package com.yunyi.blog.controller;
 
+import com.yunyi.blog.common.aop.LogAnnotation;
 import com.yunyi.blog.service.ArticleService;
 
 import com.yunyi.blog.vo.Result;
@@ -21,6 +22,8 @@ public class ArticleController {
      */
 
     @PostMapping
+    //加上此注解，代表要对此接口记录入职
+    @LogAnnotation(module="文章",operator="获取文章列表")
     public Result listArticle(@RequestBody PageParams pageParams){
         return articleService.listArticle(pageParams);
 
