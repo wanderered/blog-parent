@@ -175,7 +175,7 @@
                 },
                 pagination: {//分页相关模型数据
 					  currentPage: 1,//当前页码
-					  pageSize:10,//每页显示的记录数
+					  pageSize:2,//每页显示的记录数
 					  total:0,//总记录数
 					  queryString:null//查询条件
 				},
@@ -287,6 +287,7 @@
                         axios.get("/admin/permission/delete/"+row.id).then((res)=>{
                             if (res.data.success){
                                 this.$message.success("删除成功");
+                                this.findPage();
                             }
                         }).catch((error)=>{
                             if (error == "Error: Request failed with status code 403"){
