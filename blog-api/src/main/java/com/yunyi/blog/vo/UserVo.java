@@ -7,10 +7,10 @@ import lombok.Data;
 @Data
 
 public class UserVo {
-    @JsonSerialize(using = ToStringSerializer.class)
+    //@JsonSerialize(using = ToStringSerializer.class)
     private String nickname;
 
     private String avatar;
-    @JsonSerialize(using = ToStringSerializer.class)
-    private Long id;
+    //@JsonSerialize(using = ToStringSerializer.class)
+    private String id;
 }
